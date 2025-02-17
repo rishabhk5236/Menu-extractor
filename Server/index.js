@@ -1,12 +1,18 @@
 const express = require("express");
 const puppeteer = require("puppeteer");
 const cors = require("cors");
+// import portNumber from './portNumber';
+const portNumber = require('./portNumber');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 5000;
+const PORT = portNumber.PORT;
+
+app.get('/',(req,res)=>{
+  res.send("Connceted to server");
+})
 
 app.post("/scrape", async (req, res) => {
   const { url } = req.body;
